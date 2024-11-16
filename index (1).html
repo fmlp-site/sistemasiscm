@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Inscrição</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .info {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Detalhes da Inscrição</h2>
+        <div class="info"><span>Nome:</span> <span id="nome"></span></div>
+        <div class="info"><span>CPF:</span> <span id="cpf"></span></div>
+        <div class="info"><span>Curso:</span> <span id="curso"></span></div>
+        <div class="info"><span>Status da Inscrição:</span> <span id="statusInscricao"></span></div>
+        <h2>Status da Bolsa</h2>
+        <div class="info"><span>Justificativa:</span> <span id="justificativa"></span></div>
+        <div class="info"><span>Status da Bolsa:</span> <span id="statusBolsa"></span></div>
+    </div>
+
+    <script>
+        const candidato = JSON.parse(localStorage.getItem('candidato'));
+
+        if (candidato) {
+            document.getElementById('nome').textContent = candidato.nome;
+            document.getElementById('cpf').textContent = candidato.cpf;
+            document.getElementById('curso').textContent = candidato.curso || 'Não especificado';
+            document.getElementById('statusInscricao').textContent = candidato.statusInscricao || 'Em análise';
+            document.getElementById('justificativa').textContent = candidato.justificativa || 'Não fornecida';
+            document.getElementById('statusBolsa').textContent = candidato.statusBolsa || 'Em análise';
+        } else {
+            alert('Dados não encontrados. Faça login novamente.');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
